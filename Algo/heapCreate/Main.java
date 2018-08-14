@@ -1,0 +1,193 @@
+package heapCreate;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.*;
+
+/*
+Построение кучи
+Переставить элементы заданного массива чисел так, чтобы он удовле-
+творял свойству мин-кучи.
+Вход. Массив чисел A[0 . . . n − 1].
+Выход. Переставить элементы массива так, чтобы выпол-
+нялись неравенства A[i] ≤ A[2i + 1] и A[i] ≤ A[2i + 2] для
+всех i.
+Sample Input 1:
+
+6
+0 1 2 3 4 5
+
+Sample Output 1:
+
+0
+
+Sample Input 2:
+
+6
+7 6 5 4 3 2
+
+Sample Output 2:
+
+4
+2 5
+1 4
+0 2
+2 5
+ */
+public class Main {
+
+    static List<String> result;
+
+    public static void main(String[] args) throws IOException {
+
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+
+        int size = Integer.parseInt(reader.readLine());
+        String[] str = reader.readLine().split(" ");
+        int[] array = new int[size];
+        for (int i = 0; i < size; i++) {
+            array[i] = Integer.parseInt(str[i]);
+        }
+
+        result = new ArrayList<>();
+
+        for (int i = (size - 1); i >= 0; i--) {
+            int p = (i - 1)/2;
+            Down(array, p);
+        }
+
+        System.out.println(result.size());
+        for(int i = 0; i < result.size(); i++) {
+            System.out.println(result.get(i));
+        }
+
+    }
+
+    private static void Down(int[] H, int i) {
+        int leftChild;
+        int rightChild;
+        int min;
+
+        for (; ; )
+        {
+            leftChild = 2 * i + 1;
+            rightChild = 2 * i + 2;
+            min = i;
+
+            if (leftChild < H.length && H[leftChild] < H[min])
+            {
+                min = leftChild;
+            }
+
+            if (rightChild < H.length && H[rightChild] < H[min])
+            {
+                min = rightChild;
+            }
+
+            if (min == i)
+            {
+                break;
+            }
+            result.add(i + " " + min);
+            //System.out.println(i + " " + min);
+            int temp = H[i];
+            H[i] = H[min];
+            H[min] = temp;
+            i = min;
+        }
+    }
+
+    private static void swap(int[] H, int a, int b) {
+        int temp = H[a];
+        H[a] = H[b];
+        H[b] = temp;
+    }
+
+}
+
+/*
+//Другое решение
+import java.util.*;
+public class Main {
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        int[] ar = new int[n+1];
+        for (int i = 0; i < n; i++) {
+            ar[i] = sc.nextInt();
+        }
+        ar[n] = Integer.MAX_VALUE;                          //Чтобы не париться насчет выхода за границы массива
+        ArrayList<int[]> ans = new ArrayList<>();
+        int k = 1;
+        while (true) {
+            for (int i = n/2 - 1; i >= k - 1; i--) {                   //идем всегда от середины до 0/1/3/7.../2^k -1
+                if (ar[i] > Math.min(ar[2 * i + 1], ar[2 * i + 2])) {  //и свапаем i элемент
+                    int el = ar[2*i+1] < ar[2*i+2] ? 2*i+1 : 2*i+2;
+                    int temp = ar[i];
+                    ar[i] = ar[el];
+                    ar[el] = temp;
+                    ans.add(new int[]{i, el});
+                }
+            }
+            if (n/2 < k) {break;}
+            k *= 2;
+        }
+        System.out.println(ans.size());
+        for (int[] a : ans) {
+            System.out.println(Integer.toString(a[0]).concat(" ").concat(Integer.toString(a[1])));
+        }
+    }
+}
+
+//
+import java.util.*;
+
+public class Main {
+
+    private static int [] a;
+    private static List<String> swaps = new LinkedList<>();
+    private static int n;
+
+    public static void main(String[] args) {
+
+        Scanner in = new Scanner(System.in);
+        n = in.nextInt();
+        a = new int[n];
+        for (int i = 0; i < n; i++)
+            a[i] = in.nextInt();
+
+        for (int i = n/2; i >= 0; i--)
+            siftDown(i);
+
+        System.out.println(swaps.size());
+        swaps.forEach(System.out::println);
+    }
+
+    private static void siftDown(int id) {
+        int leftId = id*2 + 1;
+        int rightId = id*2 + 2;
+        int minId = -1;
+
+        if (leftId < n)
+            minId = leftId;
+
+        if (rightId < n)
+            if (a[rightId] < a[leftId])
+                minId = rightId;
+
+        if (minId != -1 && a[id] > a[minId]) {
+            swap(id, minId);
+            siftDown(minId);
+        }
+    }
+
+    private static void swap(int i, int j) {
+        int temp = a[i];
+        a[i] = a[j];
+        a[j] = temp;
+        swaps.add(i + " " + j);
+    }
+}
+ */

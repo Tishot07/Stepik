@@ -90,25 +90,3 @@ public class Main {
     }
 
 }
-
-/*
-//С лямбдами
-import java.util.*;
-public class Main {
-
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        int n = sc.nextInt();
-        int m = sc.nextInt();
-        PriorityQueue<long[]> procs = new PriorityQueue<>((x,y)-> x[1]==y[1] ? (int)(x[0]-y[0]) : (int)(x[1]-y[1]));
-        for (int i = 0; i < n; i++) {
-            procs.add(new long[] {i,0});
-        }
-        for (int i = 0; i < m; i++) {
-            long[] p = procs.poll();
-            procs.offer(new long[] {p[0], p[1] + sc.nextInt()});
-            System.out.println(Long.toString(p[0]).concat(" ").concat(Long.toString(p[1])));
-        }
-    }
-}
- */

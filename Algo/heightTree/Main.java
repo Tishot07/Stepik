@@ -80,35 +80,3 @@ public class Main {
     }
 
 }
-/*
-//Другое решение
-import java.io.IOException;
-import java.util.*;
-
-public class Main {
-
-    public static void main(String[] args) throws IOException {
-        Scanner scanner = new Scanner(System.in);
-
-        int[] tree =  new int[scanner.nextInt()];
-        for (int a = 0; a < tree.length; a++) {
-            tree[a] = scanner.nextInt();
-        }
-        int height = 1;
-        for(int a = 0 ; a < tree.length; a++) {
-          height = Math.max(height, countHeight(tree,a));
-        }
-        System.out.println(height);
-
-    }
-
-    public static int countHeight(int[] tree, int index) {
-       int height = 1;
-        if(tree[index] != -1) {
-                height = Math.max(height, 1 + countHeight(tree,tree[index]));
-            }
-            else return height;
-        return height;
-}
-}
- */

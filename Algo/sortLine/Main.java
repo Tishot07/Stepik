@@ -66,37 +66,3 @@ public class Main {
         }
     }
 }
-
-/*
-//другой вариант
-import java.util.Arrays;
-import java.util.Scanner;
-
-class Main {
-    public static void main(String[] args) {
-        try (Scanner sc = new Scanner(System.in)) {
-            int n = sc.nextInt();
-            int[] a = new int[n];
-            for (int i = 0; i < n; i++) {
-                a[i] = sc.nextInt();
-            }
-            Arrays.stream(countSort(a, 10)).forEach(x -> System.out.printf("%d ", x));
-        }
-    }
-
-    private static int[] countSort(int[] a, int m) {
-        int[] b = new int[m + 1];
-        Arrays.stream(a).forEach(x -> b[x] ++);
-        b[0] --;
-        for (int i = 1; i < m + 1; i++) {
-            b[i] = b[i] + b[i - 1];
-        }
-        int[] a1 = new int[a.length];
-        for (int j = a.length - 1; j >= 0; j--) {
-            a1[b[a[j]]] = a[j];
-            b[a[j]] = b[a[j]] - 1;
-        }
-        return a1;
-    }
-}
- */

@@ -95,33 +95,3 @@ public class Main {
         }
     }
 }
-
-/*
-//
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Scanner;
-
-class Main {
-    public static void main(String[] args) {
-        try (Scanner sc = new Scanner(System.in)) {
-            int amountOfRequests = sc.nextInt();
-            Map<Integer, String> telephBook = new HashMap<>();
-            for (int i = 0; i < amountOfRequests; i++) {
-                String request = sc.next();
-                switch (request) {
-                    case "add":
-                        telephBook.put(sc.nextInt(), sc.next());
-                        break;
-                    case "del":
-                        telephBook.remove(sc.nextInt());
-                        break;
-                    default:
-                        Integer key = sc.nextInt();
-                        System.out.println(telephBook.containsKey(key) ? telephBook.get(key) : "not found");
-                }
-            }
-        }
-    }
-}
- */

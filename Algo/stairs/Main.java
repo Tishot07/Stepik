@@ -61,34 +61,3 @@ class Main {
         System.out.println(result.get(count));
     }
 }
-
-/*
-//с помощью лямбд
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.io.IOException;
-import java.util.Arrays;
-import java.util.stream.Stream;
-
-
-class Main {
-  public static void main(String[] args) {
-        try(BufferedReader reader = new BufferedReader(new InputStreamReader(System.in))){
-            reader.readLine();
-            int[] values = new int[3];
-            Arrays.stream(reader.readLine().split(" "))
-                    .mapToInt(Integer::parseInt)
-                    .forEach(
-                            value -> {
-                                values[2] = value + Math.max(values[0], values[1]);
-                                values[0] = values[1];
-                                values[1] = values[2];
-                            }
-                    );
-            System.out.println(values[2]);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-  }
-}
- */

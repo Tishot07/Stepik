@@ -59,4 +59,3 @@ public class Main {
         }
     }
 }
-//else if (item != '(' || item != '{' || item != '[' || item != '}' || item != ']' || item != ')')

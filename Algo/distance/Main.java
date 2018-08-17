@@ -67,32 +67,3 @@ public class Main {
     }
 
 }
-
-/*
-//Другой вариант
-import java.util.Scanner;
-import java.util.stream.IntStream;
-
-class Main {
-    public static void main(String[] args) {
-        try (Scanner sc = new Scanner(System.in)) {
-            System.out.println(editDistBU(sc.nextLine().chars().toArray(), sc.nextLine().chars().toArray()));
-        }
-    }
-
-    private static int editDistBU(int[] b, int[] a) {
-        int[][] d = new int[a.length + 1][b.length + 1];
-        IntStream.rangeClosed(0, a.length).forEach(i -> d[i][0] = i);
-        IntStream.rangeClosed(0, b.length).forEach(j -> d[0][j] = j);
-        IntStream.range(0, a.length).forEach(i -> IntStream.range(0, b.length).forEach(j -> {
-            int c = a[i] == b[j] ? 0 : 1;
-            d[i + 1][j + 1] = min(d[i][j + 1] + 1, d[i + 1][j] + 1, d[i][j] + c);
-        }));
-        return d[a.length][b.length];
-    }
-
-    private static int min(int a, int b, int c) {
-        return IntStream.of(a, b, c).min().orElse(Integer.MAX_VALUE);
-    }
-}
- */
